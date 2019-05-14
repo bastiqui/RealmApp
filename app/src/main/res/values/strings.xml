@@ -27,4 +27,5 @@
     <string name="buscar">BUSCAR</string>
     <string name="desde">DESDE</string>
     <string name="fins_a">FINS A</string>
+    <string name="email">EMAIL</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewPerson"
+    tools:context=".ModifyPerson"
     android:orientation="vertical">
 
     <EditText
@@ -22,11 +22,11 @@
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/modifySurname"
+        android:id="@+id/modifyEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/cognom"
-        android:inputType="text"/>
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/modifyAge"

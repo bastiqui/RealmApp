@@ -1,16 +1,24 @@
 package com.example.realm1;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 public class Persona extends RealmObject {
 
     @PrimaryKey
     private String dni;
 
-    private String name,surname;
+    @Required
+    @Index
+    private String fullName;
+
     private int age;
     private String gender;
+
+    @Required
+    private String email;
 
     String getDni() {
         return dni;
@@ -20,20 +28,20 @@ public class Persona extends RealmObject {
         this.dni = dni;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    String getSurname() {
-        return surname;
+    public String getEmail() {
+        return email;
     }
 
-    void setSurname(String surname) {
-        this.surname = surname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     int getAge() {

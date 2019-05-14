@@ -20,7 +20,7 @@ public class ModifyPerson extends AppCompatActivity {
 
         final EditText dni = findViewById(R.id.modifyDni);
         final EditText name = findViewById(R.id.modifyName);
-        final EditText surname = findViewById(R.id.modifySurname);
+        final EditText email = findViewById(R.id.modifyEmail);
         final EditText age = findViewById(R.id.modifyAge);
         RadioButton m = findViewById(R.id.radioButtonM);
         RadioButton f = findViewById(R.id.radioButtonF);
@@ -36,7 +36,7 @@ public class ModifyPerson extends AppCompatActivity {
 
         dni.setText(getDni);
         name.setText(getIntent().getStringExtra("name"));
-        surname.setText(getIntent().getStringExtra("surname"));
+        email.setText(getIntent().getStringExtra("email"));
         age.setText(String.valueOf(getEdat));
 
         findViewById(R.id.modPerson).setOnClickListener(new View.OnClickListener() {
@@ -58,8 +58,8 @@ public class ModifyPerson extends AppCompatActivity {
                             String gender = r.getText().toString();
 
                             RealmResults<Persona> personas = realm.where(Persona.class).equalTo("dni", getDni).findAll();
-                            personas.setValue("name", name.getText().toString());
-                            personas.setValue("surname", surname.getText().toString());
+                            personas.setValue("fullName", name.getText().toString());
+                            personas.setValue("email", email.getText().toString());
                             personas.setValue("age", Integer.parseInt(age.getText().toString()));
                             personas.setValue("gender", gender);
                         }
