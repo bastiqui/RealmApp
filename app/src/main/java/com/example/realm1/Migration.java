@@ -1,8 +1,6 @@
 package com.example.realm1;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import io.realm.DynamicRealm;
 import io.realm.DynamicRealmObject;
@@ -23,7 +21,7 @@ public class Migration implements RealmMigration {
         @PrimaryKey
         private String dni;
         private String name;
-        private String email;
+        private String surname;
         private int age;
         private String gender;
 

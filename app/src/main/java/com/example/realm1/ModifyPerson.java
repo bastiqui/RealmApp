@@ -1,6 +1,7 @@
 package com.example.realm1;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -49,7 +50,7 @@ public class ModifyPerson extends AppCompatActivity {
                     Realm realm = Realm.getDefaultInstance();
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
-                        public void execute(Realm realm) {
+                        public void execute(@NonNull Realm realm) {
                             RadioGroup radioButtonGroup = findViewById(R.id.radioModPerson);
                             int radioButtonID = radioButtonGroup.getCheckedRadioButtonId();
                             View radioButton = radioButtonGroup.findViewById(radioButtonID);

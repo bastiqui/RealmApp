@@ -2,6 +2,7 @@ package com.example.realm1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ListView;
 
+import java.net.Inet4Address;
 import java.util.UUID;
 
 import io.realm.Realm;
@@ -79,25 +81,43 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_list) {
-            Realm realm = Realm.getDefaultInstance();
-            RealmQuery<Persona> query = realm.where(Persona.class);
-            RealmResults<Persona> results = query.findAll();
+        Intent intent;
+        Realm realm;
+        RealmQuery<Persona> query;
+        RealmResults<Persona> results;
+        ListPersonaAdapter personaAdapter;
 
-            ListPersonaAdapter personaAdapter = new ListPersonaAdapter(results);
-            listView.setAdapter(personaAdapter);
-            personaAdapter.notifyDataSetChanged();
+        switch (id) {
+            case R.id.nav_add:
+                intent = new Intent(MainActivity.this,NewPerson.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_find:
+                intent = new Intent(MainActivity.this, FilterPerson.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_list:
+                realm = Realm.getDefaultInstance();
+                query = realm.where(Persona.class);
+                results = query.findAll();
 
-        } else if (id == R.id.nav_add) {
-            Intent intent = new Intent(MainActivity.this,NewPerson.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_find) {
-            Intent intent = new Intent(MainActivity.this, FilterPerson.class);
-            startActivity(intent);
+                personaAdapter = new ListPersonaAdapter(results);
+                listView.setAdapter(personaAdapter);
+                personaAdapter.notifyDataSetChanged();
+                break;
+             default:
+                 realm = Realm.getDefaultInstance();
+                 query = realm.where(Persona.class);
+                 results = query.findAll();
+
+                 personaAdapter = new ListPersonaAdapter(results);
+                 listView.setAdapter(personaAdapter);
+                 personaAdapter.notifyDataSetChanged();
+                 break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
