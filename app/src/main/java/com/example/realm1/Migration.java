@@ -37,7 +37,8 @@ public class Migration implements RealmMigration {
         private String gender;
         @Required
         private String email;
-         */
+
+        */
 
         if (oldVersion == 0) {
             Log.d("Migration", "Upgrading DB version to 1.0");
@@ -45,18 +46,17 @@ public class Migration implements RealmMigration {
             RealmObjectSchema objectSchema = schema.get("Persona");
 
             objectSchema
-                    .addField("fulName", String.class, FieldAttribute.REQUIRED)
+                    .addField("fullName", String.class, FieldAttribute.REQUIRED)
                     .transform(new RealmObjectSchema.Function() {
                         @Override
                         public void apply(DynamicRealmObject obj) {
                             //Empty space
-                            obj .set("fullName", obj.getString("name") + " " + obj.getString("email"));
+                            obj.set("fullName", obj.getString("name") + " " + obj.getString("surname"));
                         }
                     })
                     .addIndex("fullName")
                     .addField("email", String.class, FieldAttribute.REQUIRED)
-                    .removeField("name")
-                    .removeField("email");
+                    .removeField("name");
 
             // This makes the IF just run once.
             oldVersion++;
